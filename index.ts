@@ -13,7 +13,6 @@ const app = express();
 app.use(`/${APPLICATION_VERSION}`, router);
 
 // listening to the port.
-
 app.listen(APPLICATION_PORT, () => {
   console.log("SERVING RUNNING AT", APPLICATION_PORT);
 });
