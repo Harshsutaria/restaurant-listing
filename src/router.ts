@@ -1,13 +1,8 @@
 // importing required modules.
 import express from "express";
 const router = express.Router();
+import productRouter from "./product/product-router";
 
-router.get("/", (req, res) => {
-  console.log("INSIDE ROUTER.TS FILE BRUH!!!!");
-  return res.json({
-    code: 200,
-    message: "Hello from express router",
-  });
-});
+router.use("/products", productRouter);
 
 export default router;
