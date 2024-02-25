@@ -10,9 +10,9 @@
 //   //     "123",
 //   //   ]);
 
-//   //   const res = await pg.execute("insert into ab(id) values($1)", ["777"]);
+//   const res = await pg.execute("insert into ab(id) values($1)", ["999"]);
 
 //   console.log("res is ", res);
 // }
 
-// // main();
+// main();
