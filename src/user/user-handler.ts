@@ -65,13 +65,11 @@ handler.update = async function (req: any, res: any) {
 function getServiceArgs(req: any, res: any) {
   const body = req.body || {};
 
+  // Ref:- https://expressjs.com/en/api.html#req.params
   const params = {
     ...req.query,
+    ...req.params,
   };
-
-  if (req.path) {
-    params.userId = req.path.slice(1, req.path.length);
-  }
 
   const author = req.headers;
 
