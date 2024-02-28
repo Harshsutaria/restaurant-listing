@@ -1,7 +1,7 @@
 import orderItemsInterface, { orderItemInterface } from "../../utils/interfaces/orderItemsInterface";
 import ValidationResultInterface from "../../utils/interfaces/validationResultInterface";
 
-export function validateUserRequestPayload(payload: any): ValidationResultInterface {
+export function validateOrderRequestPayload(payload: any): ValidationResultInterface {
   const validationResult: ValidationResultInterface = {
     status: true,
     message: `Order validation successfully`,
@@ -28,6 +28,13 @@ export function validateUserRequestPayload(payload: any): ValidationResultInterf
   if (payload.paymentMethod === undefined) {
     validationResult.status = false;
     validationResult.message = "Payment Method is mandatory for creating order";
+    return validationResult;
+  }
+
+
+  if (!Array.isArray(payload.productList) || !payload.productList.length) {
+    validationResult.status = false;
+    validationResult.message = "Product list is mandatory for creating order";
     return validationResult;
   }
 
