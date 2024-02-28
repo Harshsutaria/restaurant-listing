@@ -26,3 +26,17 @@ create table userProfile(
 );
 
 
+-- orders schema
+create table orders(
+    "orderId" varchar primary key not null,
+    "customerId" varchar not null,
+    "deliveryAddress" varchar not null,
+    "orderValue" varchar not null,
+    "productList" JSONB not null,
+    "orderStatus" varchar not null,
+    "paymentMethod" varchar not null,
+    "createdTS" varchar not null,
+    "updatedTS" varchar not null
+);
+
+
