@@ -7,6 +7,7 @@ export enum serviceConstants {
   DATABASE = "commondb",
   PRODUCT_TABLE = "product",
   PROFILE_TABLE = "userProfile",
+  ORDER_TABLE = "orders",
 }
 
 export enum ROLE {
