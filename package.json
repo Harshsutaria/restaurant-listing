@@ -1,5 +1,5 @@
 {
-  "name": "qp-assessment",
+  "name": "restaurant-listing",
   "version": "1.0.0",
   "description": "This is a repo created for admin to manage restaurant listing.",
   "main": "index.js",
