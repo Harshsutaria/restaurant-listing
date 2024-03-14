@@ -26,15 +26,14 @@ create table userAuthProfile(
 );
 
 
--- orders schema
-create table orders(
-    "orderId" varchar primary key not null,
-    "customerId" varchar not null,
-    "deliveryAddress" varchar not null,
-    "orderValue" varchar not null,
-    "productList" JSONB not null,
-    "orderStatus" varchar not null,
-    "paymentMethod" varchar not null,
+-- review schema
+create table review(
+    "reviewId" varchar primary key not null,
+    "businessId" varchar not null,
+    "userId" varchar not null,
+    "review" varchar not null,
+    "rating" varchar not null,
+    "reply" varchar, 
     "createdTS" varchar not null,
     "updatedTS" varchar not null
 );
