@@ -1,13 +1,13 @@
 // importing required modules.
 import express from "express";
 const router = express.Router();
-import productRouter from "./product/product-router";
+import businessRouter from "./business/businessRouter";
 import userRouter from "./userAuth/userAuthRouter";
 
 // router for users
 router.use("/auth", userRouter);
 
-// router for products
-// router.use("/products", productRouter);
+// router for business
+router.use("/business", businessRouter);
 
 export default router;

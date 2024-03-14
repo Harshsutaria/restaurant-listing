@@ -1,15 +1,13 @@
--- Product schema
-create table product (
-    "productId" varchar primary key not null,
-    "productTitle" varchar not null,
-    "productCategory" varchar not null,
-    "productDescription" varchar,
-    "mrp" varchar not null,
-    "sellingPrice" varchar not null,
-    "manufacturer" varchar not null,
-    "quantity" varchar not null,
-    "units" varchar not null,
-    "shelfLife" varchar,
+-- Business schema
+create table business (
+    "businessId" varchar primary key not null,
+    "businessName" varchar not null,
+    "ownerId" varchar not null,
+    "ownerName" varchar not null,
+    "businessContactNumber" varchar not null,
+    "businessCity" varchar,
+    "businessAddress" varchar not null,
+    "imagesPath" varchar not null,
     "createdTS" varchar not null,
     "updatedTS" varchar not null
 );
