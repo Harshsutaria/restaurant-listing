@@ -2,16 +2,12 @@
 import express from "express";
 const router = express.Router();
 import productRouter from "./product/product-router";
-import userRouter from "./user/user-router";
-import orderRouter from "./order/order-router";
+import userRouter from "./userAuth/userAuthRouter";
 
 // router for users
-router.use("/user", userRouter);
+router.use("/auth", userRouter);
 
 // router for products
-router.use("/products", productRouter);
-
-// router for orders
-router.use("/orders",orderRouter)
+// router.use("/products", productRouter);
 
 export default router;

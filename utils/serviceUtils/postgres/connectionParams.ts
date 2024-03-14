@@ -5,11 +5,11 @@ import PostgresConnectionParamsInterface from "../../interfaces/postgresConnecti
  * Please shoot an email to harshsutaria25@gmail.com for the correct creds.
  */
 const postgresConnectionParams: PostgresConnectionParamsInterface = {
-  host: "123.12.12",
-  port: 5232,
+  host: "3.7.44.41",
+  port: 5432,
   database: "commondb",
-  user: "abc@gmail.com",
-  password: "pass123",
+  user: "openerp",
+  password: "openerp",
 };
 
 export default postgresConnectionParams;

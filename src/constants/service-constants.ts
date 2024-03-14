@@ -6,8 +6,7 @@ export const APPLICATION_PORT: number = parseInt(process.env.APPLICATION_PORT);
 export enum serviceConstants {
   DATABASE = "commondb",
   PRODUCT_TABLE = "product",
-  PROFILE_TABLE = "userProfile",
-  ORDER_TABLE = "orders",
+  PROFILE_TABLE = "userAuthProfile",
 }
 
 export enum ROLE {

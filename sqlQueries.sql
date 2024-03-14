@@ -17,9 +17,11 @@ create table product (
 
 -- userProfile schema
 
-create table userProfile(
+create table userAuthProfile(
     "userId" varchar primary key not null,
     "userName" varchar not null,
+    "userEmail" varchar not null,
+    "password" varchar not null,
     "userRole" varchar not null,
     "createdTS" varchar not null,
     "updatedTS" varchar not null

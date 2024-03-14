@@ -1,56 +1,46 @@
-import { OrderService } from "./order-service";
+import { UserAuthService } from "./userAuthService";
 import HTTPConst from "../../utils/serviceUtils/HttpStatusCodes";
 import { ROLE } from "../constants/service-constants";
-import logger from "../../utils/serviceUtils/loggerUtil";
 
 const handler: any = {};
 
-handler.create = async function (req: any, res: any) {
+handler.signUp = async function (req: any, res: any) {
   const { author, params, body } = getServiceArgs(req, res);
 
-  // Validating user based on the role
-  if (author.userrole !== ROLE.user) {
-    return res.json({
-      code: HTTPConst.clientError.UNAUTHORIZED,
-      message: "USER IS UNAUTHORIZED FOR THIS ACTION",
-    });
-  }
-
-  const orderService = new OrderService();
+  const userAuthService = new UserAuthService();
 
   try {
-    const result = await orderService.create(author, params, body);
+    const result = await userAuthService.signUp(author, params, body);
     return res.json({
       code: HTTPConst.success.CREATED,
-      message: "Order Created SuccessFully!!!",
+      message: "User Sign up SuccessFully!!!",
       result,
     });
   } catch (error) {
-    logger.error(`Error is ${JSON.stringify(error)}`);
     return res.json({
       code: HTTPConst.serverError.INTERNAL_SERVER,
-      message: "Order Creation Failed",
+      message: "User Sign up Failed",
       error,
     });
   }
 };
 
-handler.update = async function (req: any, res: any) {
+handler.login = async function (req: any, res: any) {
   const { author, params, body } = getServiceArgs(req, res);
 
-  const orderService = new OrderService();
+  const userAuthService = new UserAuthService();
 
   try {
-    const result = await orderService.update(author, params, body);
+    const result = await userAuthService.login(author, params, body);
     return res.json({
       code: HTTPConst.success.ACCEPTED,
-      message: "Order Updated SuccessFully!!!",
+      message: "User Login SuccessFully!!!",
       result,
     });
   } catch (error) {
     return res.json({
       code: HTTPConst.serverError.INTERNAL_SERVER,
-      message: "Order Updation Failed",
+      message: "User Login Failed",
       error,
     });
   }

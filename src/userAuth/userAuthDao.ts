@@ -22,8 +22,8 @@ export class UserDao {
     return this.createUserInPostgres(user);
   }
 
-  async update(user: UserInterface): Promise<UserInterface> {
-    return this.updateUserInPostgres(user);
+  async get(userEmail: string): Promise<UserInterface> {
+    return this.getUserFromPostgres(userEmail);
   }
 
   private async createUserInPostgres(
@@ -31,9 +31,8 @@ export class UserDao {
   ): Promise<UserInterface> {
     let data: any;
     const sqlQuery: string = `INSERT INTO ${this.tableName}(
-        "userId","userName",
-        "userRole","createdTS",
-        "updatedTS") values($1,$2,$3,$4,$5)`;
+        "userId","userName", "userEmail","password",
+        "userRole","createdTS") values($1,$2,$3,$4,$5,$6)`;
 
     // initializing connection with the database
     await this.postgres.connect(this.dataBaseName);
@@ -43,9 +42,10 @@ export class UserDao {
       data = await this.postgres.execute(sqlQuery, [
         user.userId,
         user.userName,
+        user.userEmail,
+        user.password,
         user.userRole,
         user.createdTS,
-        user.updatedTS,
       ]);
       logger.info(`User creation dao operation is successful`);
     } catch (error) {
@@ -57,36 +57,27 @@ export class UserDao {
     return user;
   }
 
-  private async updateUserInPostgres(
-    user: UserInterface
-  ): Promise<UserInterface> {
+  private async getUserFromPostgres(userEmail: string): Promise<UserInterface> {
     let data: any;
-    // Preparing sql update query
-    const sqlQuery: string = `UPDATE ${this.tableName} 
-        SET  
-            "userName"=$1 ,"userRole" = $2,
-            "updatedTS" = $3
-
-        WHERE "userId" = $4
-        `;
+    let result;
+    const sqlQuery: string = `SELECT * from ${this.tableName} where "userEmail" = $1`;
 
     // initializing connection with the database
     await this.postgres.connect(this.dataBaseName);
 
     // Trying to execute postgres query
     try {
-      data = await this.postgres.execute(sqlQuery, [
-        user.userName,
-        user.userRole,
-        user.updatedTS,
-        user.userId,
-      ]);
-      logger.info(`User Updation dao operation is successful`);
+      data = await this.postgres.execute(sqlQuery, [userEmail]);
+      logger.info(`User fetch dao operation is successful`);
     } catch (error) {
-      logger.error(`Getting error while updation user ${error}`);
-      throw new Error(`Getting error while updation user ${error}`);
+      logger.error(`Getting error while creating user ${error}`);
+      throw new Error(`Getting error while creating user ${error}`);
     }
 
-    return user;
+    if (Array.isArray(data) && data.length > 0) {
+      result = data[0];
+    }
+
+    return result;
   }
 }
