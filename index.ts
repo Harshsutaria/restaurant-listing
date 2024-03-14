@@ -18,7 +18,7 @@ const app = express();
 // for parsing application/json
 app.use(express.json());
 
-// using service router
+// using service router.
 app.use(`/${APPLICATION_VERSION}`, router);
 
 // listening to the port.
