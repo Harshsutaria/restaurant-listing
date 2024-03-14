@@ -51,8 +51,11 @@ export class UserAuthService {
 
     // Inserting product into database
     const result: UserInterface = await this.userDao.create(user);
-    // returning result
-    return result;
+
+    // sending user payload
+    const responsePayload = this.createJWTPayload(result);
+
+    return responsePayload;
   }
 
   /**

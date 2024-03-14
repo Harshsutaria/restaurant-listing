@@ -1,6 +1,5 @@
 import { UserAuthService } from "./userAuthService";
 import HTTPConst from "../../utils/serviceUtils/HttpStatusCodes";
-import { ROLE } from "../constants/service-constants";
 
 const handler: any = {};
 
